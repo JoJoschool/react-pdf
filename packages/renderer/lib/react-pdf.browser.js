@@ -4060,7 +4060,7 @@ const createRenderer = _ref => {
 };
 
 var name = "@react-pdf/renderer";
-var version$1 = "3.4.4";
+var version$1 = "3.4.4-jojo-fork";
 var license = "MIT";
 var description = "Create PDF files on the browser and server";
 var author = "Diego Muracciole <diegomuracciole@gmail.com>";
