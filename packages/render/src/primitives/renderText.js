@@ -45,7 +45,7 @@ const renderAttachments = (ctx, run) => {
   ctx.restore();
 };
 
-const renderRun = (ctx, run, options) => {
+const renderRun = (ctx, run, line, options) => {
   const { font, fontSize, link } = run.attributes;
   const color = parseColor(run.attributes.color);
   const opacity = isNil(run.attributes.opacity)
@@ -93,7 +93,13 @@ const renderRun = (ctx, run, options) => {
     ctx.font(typeof font.name === 'string' ? font.name : font, fontSize);
 
     try {
-      renderGlyphs(ctx, run.glyphs, run.positions, 0, 0);
+      renderGlyphs(
+        ctx,
+        run.glyphs,
+        run.positions,
+        0,
+        -((line.height - run.height) * (2 / 3)),
+      );
     } catch (error) {
       console.log(error);
     }
@@ -193,7 +199,7 @@ const renderLine = (ctx, line, options) => {
 
       renderBackground(ctx, backgroundRect, run.attributes.backgroundColor);
     }
-    renderRun(ctx, run, options);
+    renderRun(ctx, run, line, options);
   }
 
   ctx.restore();
